@@ -334,7 +334,12 @@ class Post extends Model
 
         if (!empty($this->terms)) {
             $taxonomies = array_values($this->terms);
-
+            
+            if(array_key_exists("category", $this->terms)){
+                $terms = array_values($this->terms["category"]);
+                return $terms[0];
+            }
+            
             if (!empty($taxonomies[0])) {
                 $terms = array_values($taxonomies[0]);
                 $mainCategory = $terms[0];
