@@ -87,6 +87,7 @@ class Post extends Model
         'excerpt',
         'status',
         'image',
+        'image_array',
         'terms',
         'main_category',
         'keywords',
@@ -130,6 +131,19 @@ class Post extends Model
 
         return $model;
     }
+    
+    public function getImageArrayAttribute(){
+
+        if ($this->thumbnail and $this->thumbnail->attachment) {
+            foreach($this->thumbnail->attachment->meta as $item){
+                if($item->meta_key == '_wp_attachment_metadata'){
+                    return unserialize($item->meta_value);
+                }
+            }
+        }
+        return "";
+    }
+
 
     /**
      * @param array $attributes
