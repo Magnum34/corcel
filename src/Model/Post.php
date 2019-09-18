@@ -140,7 +140,13 @@ class Post extends Model
                     return unserialize($item->meta_value);
                 }
             }
-        }
+        }else{
+			$meta = Model\Meta\PostMeta::where(['post_id' => $this->ID,'meta_key' => '_wp_attachment_metadata'])->first();
+			if($meta){
+				return unserialize($meta->meta_value);
+			}
+
+		}
         return "";
     }
 
