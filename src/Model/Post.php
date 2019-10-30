@@ -131,35 +131,25 @@ class Post extends Model
 
         return $model;
     }
-<<<<<<< HEAD
 
-=======
-
->>>>>>> 6e2694e3487f6f2780239978f06e92d895cc405c
     public function getImageArrayAttribute(){
 
         if ($this->thumbnail and $this->thumbnail->attachment) {
             foreach($this->thumbnail->attachment->meta as $item){
                 if($item->meta_key == '_wp_attachment_metadata'){
-<<<<<<< HEAD
                     $values = unserialize($item->meta_value);
                     unset($values['image_meta']);
                     return $values;
-=======
-                    return unserialize($item->meta_value);
->>>>>>> 6e2694e3487f6f2780239978f06e92d895cc405c
+
                 }
             }
         }else{
 			$meta = Model\Meta\PostMeta::where(['post_id' => $this->ID,'meta_key' => '_wp_attachment_metadata'])->first();
 			if($meta){
-<<<<<<< HEAD
 				$values =  unserialize($meta->meta_value);
                 unset($values['image_meta']);
 				return $values;
-=======
-				return unserialize($meta->meta_value);
->>>>>>> 6e2694e3487f6f2780239978f06e92d895cc405c
+
 			}
 
 		}
@@ -357,20 +347,11 @@ class Post extends Model
 
         if (!empty($this->terms)) {
             $taxonomies = array_values($this->terms);
-<<<<<<< HEAD
 
-=======
-
->>>>>>> 6e2694e3487f6f2780239978f06e92d895cc405c
             if(array_key_exists("category", $this->terms)){
                 $terms = array_values($this->terms["category"]);
                 return $terms[0];
             }
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 6e2694e3487f6f2780239978f06e92d895cc405c
             if (!empty($taxonomies[0])) {
                 $terms = array_values($taxonomies[0]);
                 $mainCategory = $terms[0];
