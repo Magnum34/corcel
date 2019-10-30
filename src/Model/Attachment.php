@@ -32,6 +32,7 @@ class Attachment extends Post
         'alt',
     ];
 
+
     protected $hidden = [
       'meta'
     ];
