@@ -92,6 +92,8 @@ class Post extends Model
         'main_category',
         'keywords',
         'keywords_str',
+        'curr_language',
+        'list_language'
     ];
 
     /**
@@ -434,4 +436,19 @@ class Post extends Model
 
         return $value;
     }
+
+    public function getListLanguageAttribute(){
+        $languages = $this->taxonomies()->get();
+        foreach($languages as $item){
+            if($item->taxonomy == 'post_translations'){
+                return unserialize($item->description);
+            }
+        }
+    }
+
+    public function getCurrLanguageAttribute(){
+        return array_key_exists('language',$this->terms) ? $this->terms['language'] : '' ;
+
+    }
+
 }
