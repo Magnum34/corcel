@@ -95,6 +95,31 @@ class Post extends Model
         'curr_language',
         'list_language'
     ];
+	
+    protected $hidden = [
+        'author_id',
+        'comment_count',
+        'comment_status',
+        'created_at',
+        'excerpt',
+        'menu_order',
+        'meta',
+        'pinged',
+        'post_excerpt',
+        'post_modified',
+        'post_modified_gmt',
+        'post_parent',
+        'post_password',
+        'ping_status',
+        'post_date_gmt',
+        'post_date',
+        'post_author',
+        'post_status',
+        'post_content_filtered',
+        'status',
+        'to_ping',
+        'updated_at'
+    ];
 
     /**
      * @var array
