@@ -166,15 +166,18 @@ class Post extends Model
                 if($item->meta_key == '_wp_attachment_metadata'){
                     $values = unserialize($item->meta_value);
                     unset($values['image_meta']);
+                    $values['alt'] = $this->thumbnail->attachment->alt;
                     return $values;
-
                 }
+
             }
         }else{
 			$meta = Model\Meta\PostMeta::where(['post_id' => $this->ID,'meta_key' => '_wp_attachment_metadata'])->first();
 			if($meta){
 				$values =  unserialize($meta->meta_value);
+                $alt = Model\Meta\PostMeta::where(['post_id' => $this->ID,'meta_key' => '_wp_attachment_image_alt'])->first();
                 unset($values['image_meta']);
+                $values['alt'] = $alt;
 				return $values;
 
 			}
